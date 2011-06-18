@@ -2,6 +2,8 @@
 
 Ara is a tiny class that's allow you to use actors[http://en.wikipedia.org/wiki/Actor_model] in Ruby
 
+Documentation : http://rubydoc.info/github/glejeune/ara/master/frames
+
 == Why "ara"
 
 Because of akka[http://akka.io/] and my two parakeets ;)
