@@ -1,5 +1,12 @@
 = ara
 
+      \\
+      (o>
+      //\
+  ____V_/\____
+      //
+     // 
+
 Ara is a tiny class that's allow you to use actors[http://en.wikipedia.org/wiki/Actor_model] in Ruby
 
 Documentation : http://rubydoc.info/github/glejeune/ara/master/frames
@@ -32,7 +39,7 @@ Because of akka[http://akka.io/] and my two parakeets ;)
   # Send a simple message -- We do not expect any response
   myActor | "Bonjour !"
 
-  # Send a synchronous message -- We wait for the reponse
+  # Send a synchronous message -- We wait for the response
   response = myActor << "Hola !"
 
   # Send an asynchronous message -- We don't wait for the response
