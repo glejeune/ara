@@ -19,11 +19,17 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "ara.gemspec",
+    "examples/async_actor.rb",
+    "examples/simple_actor.rb",
+    "examples/sync_actor.rb",
     "lib/ara.rb",
+    "lib/binding_of_caller.rb",
     "test/helper.rb",
     "test/test_ara.rb"
   ]
