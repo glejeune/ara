@@ -18,9 +18,10 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://algorithmique.net"
   gem.license = "MIT"
   gem.summary = %Q{A tiny Actor class}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.description = %Q{Ara is a tiny class that’s allow you to use actors in Ruby}
   gem.email = "gregoire.lejeune@free.fr"
   gem.authors = ["Gregoire Lejeune"]
+  gem.required_ruby_version = '>= 1.9.2'
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
