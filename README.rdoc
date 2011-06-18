@@ -2,8 +2,11 @@
 
 Ara is a tiny class that's allow you to use actors[http://en.wikipedia.org/wiki/Actor_model] in Ruby
 
-== Synopsys
+== Why "ara"
 
+Because of akka[http://akka.io/] and my two parakeets ;)
+
+== Synopsys
 
   require 'ara'
   
