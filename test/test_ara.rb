@@ -1,6 +1,8 @@
 require 'helper'
 
 class MySimpleActor < SimpleActor
+  def receive(m)
+  end
 end
 
 class TestAra < Test::Unit::TestCase

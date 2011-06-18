@@ -9,5 +9,5 @@ class MySynchronizedActor < Actor
   end
 end
 
-mySynchromizedActor = Actor.actor_of(MySynchronizedActor).start
+mySynchromizedActor = Actors.actor_of(MySynchronizedActor).start
 puts mySynchromizedActor << "Hello !"

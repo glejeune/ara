@@ -13,7 +13,7 @@ def actor_response(r)
   puts "Actor send me : #{r}"
 end
 
-myASynchromizedActor = Actor.actor_of(MyASynchronizedActor).start
+myASynchromizedActor = Actors.actor_of(MyASynchronizedActor).start
 myASynchromizedActor < "Hello !"
 
 puts "Message send to actor, response will arrive ;)"

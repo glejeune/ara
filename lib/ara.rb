@@ -11,13 +11,13 @@ end
 # This class allow you to create simple actors. 
 class SimpleActor
   def initialize #:nodoc:
-    raise ActorInitializationError, "You can't initialize SimpleActor directly, use Actor.actor_of" if self.class == ::SimpleActor
+    raise ActorInitializationError, "You can't initialize SimpleActor directly, use Actors.actor_of" if self.class == ::SimpleActor
     @actorQueue = Queue.new
   end
 
   # Start actor and return it
   #
-  #   myActor = Actor.actor_of(MyActor)
+  #   myActor = Actors.actor_of(MyActor)
   #   myActor.start
   def start
     @thread = Thread.new do 
@@ -31,7 +31,7 @@ class SimpleActor
 
   # Stop actor
   #
-  #   myActor = Actor.actor_of(MyActor).start
+  #   myActor = Actors.actor_of(MyActor).start
   #   ...
   #   myActor.stop
   def stop
@@ -40,7 +40,7 @@ class SimpleActor
 
   # Send a simple message without expecting any response
   #
-  #   myActor = Actor.actor_of(MyActor).start
+  #   myActor = Actors.actor_of(MyActor).start
   #   message = ...
   #   myActor | message
   def |(message)
@@ -70,28 +70,15 @@ end
 
 # Actor class
 class Actor < SimpleActor
-  # Create a new Actor with class klass
-  #
-  #   class MyActor < Actor
-  #     def receive(message)
-  #       ...
-  #     end
-  #   end
-  #   
-  #   myActor = Actor.actor_of(MyActor)
-  def self.actor_of(klass)
-    return klass.new()
-  end
-
   def initialize #:nodoc:
-    raise ActorInitializationError, "You can't initialize Actor directly, use Actor.actor_of" if self.class == ::Actor
+    raise ActorInitializationError, "You can't initialize Actor directly, use Actors.actor_of" if self.class == ::Actor
     super
     @main = Queue.new
   end
 
   # Send a synchronous message
   #
-  #   myActor = Actor.actor_of(MyActor).start
+  #   myActor = Actors.actor_of(MyActor).start
   #   message = ...
   #   result = myActor << message
   #
@@ -107,7 +94,7 @@ class Actor < SimpleActor
 
   # Send an asynchronous message
   #
-  #   myActor = Actor.actor_of(MyActor).start
+  #   myActor = Actors.actor_of(MyActor).start
   #   message = ...
   #   myActor < message
   #
@@ -139,6 +126,22 @@ class Actor < SimpleActor
   #   end
   def reply( r )
     @main << r
+  end
+end
+
+# Actors class
+class Actors
+  # Create a new Actor with class klass
+  #
+  #   class MyActor < Actor
+  #     def receive(message)
+  #       ...
+  #     end
+  #   end
+  #   
+  #   myActor = Actors.actor_of(MyActor)
+  def self.actor_of(klass)
+    return klass.new()
   end
 end
 

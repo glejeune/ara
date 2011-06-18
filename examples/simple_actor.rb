@@ -7,7 +7,7 @@ class MySimpleActor < SimpleActor
   end
 end
 
-mySimpleActor = Actor.actor_of(MySimpleActor).start
+mySimpleActor = Actors.actor_of(MySimpleActor).start
 mySimpleActor << "Bonjour le monde!"
 
 sleep 1
