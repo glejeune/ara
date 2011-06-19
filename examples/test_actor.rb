@@ -17,10 +17,10 @@ class MySimpleActor < SimpleActor
 end
 
 mySimpleActor = Actors.actor_of(MySimpleActor).start
-mySimpleActor << 5
-mySimpleActor << "Hello World!"
-mySimpleActor << 7
-mySimpleActor << 9
+mySimpleActor | 5
+mySimpleActor | "Hello World!"
+mySimpleActor | 7
+mySimpleActor | 9
 
 puts "Thanks actor!"
 sleep 20

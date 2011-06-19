@@ -8,11 +8,11 @@ class MySimpleActor < SimpleActor
 end
 
 mySimpleActor = Actors.actor_of(MySimpleActor).start
-mySimpleActor << "Bonjour le monde!"
+mySimpleActor | "Bonjour le monde!"
 
 sleep 1
 
-mySimpleActor < "Hello World!"
+mySimpleActor | "Hello World!"
 mySimpleActor | "Ola Mundo!"
 
 sleep 1
@@ -23,7 +23,7 @@ sleep 1
 
 # This will raise an exception
 begin
-  mySimpleActor << "Hum..."
+  mySimpleActor | "Hum..."
 rescue DeadActor => e
   puts e
 end
