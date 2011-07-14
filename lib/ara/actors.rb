@@ -1,3 +1,4 @@
+require 'ara/remote_actor'
 # Actors class
 class Actors
    # Create a new Actor with class klass
@@ -13,8 +14,8 @@ class Actors
       return klass.new()
    end
 
-   def self.actor_for(k)
-      actor_of(k).start
+   def self.actor_for(route, host, port)
+      return RemoteActor.new(route, host, port)
    end
 end
 

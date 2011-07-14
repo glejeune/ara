@@ -1,20 +1,17 @@
 require 'rubygems'
-#require 'json'
 require 'rack'
 
 module Rack
  class ActorMap
     def initialize(actor)
-       @actor = actor
+       @actor = actor.start
     end
 
    def call( env )
      response = Rack::Response.new
      request = Rack::Request.new(env)
-     params = request.params
-     response.write @actor << params
-     #response.write( (@actor << params).to_json )
-     #response['Content-Type'] = 'application/json'
+     message = request.params["message"]
+     response.write @actor << message
      response.finish
     end
   end
