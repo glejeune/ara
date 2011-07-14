@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ara}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Gregoire Lejeune"]
-  s.date = %q{2011-07-14}
+  s.date = %q{2011-07-15}
   s.description = %q{Ara is a tiny class that’s allow you to use actors in Ruby}
   s.email = %q{gregoire.lejeune@free.fr}
   s.extra_rdoc_files = [
@@ -36,11 +36,15 @@ Gem::Specification.new do |s|
     "examples/simple_scheduler.rb",
     "examples/sync_actor.rb",
     "examples/test_actor.rb",
+    "examples/ws-client.rb",
+    "examples/ws.rb",
     "lib/ara.rb",
     "lib/ara/actor.rb",
     "lib/ara/actors.rb",
     "lib/ara/exception.rb",
     "lib/ara/logger.rb",
+    "lib/ara/remote.rb",
+    "lib/ara/remote_actor.rb",
     "lib/ara/scheduler.rb",
     "lib/ara/simple_actor.rb",
     "lib/ext/binding_of_caller.rb",
