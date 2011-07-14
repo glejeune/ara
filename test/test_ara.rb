@@ -7,7 +7,7 @@ end
 
 class TestAra < Test::Unit::TestCase
   should "create a simple actor" do
-    simple_actor = Actor.actor_of(MySimpleActor)
+    simple_actor = Actors.actor_of(MySimpleActor)
     assert simple_actor != nil
   end
 end
