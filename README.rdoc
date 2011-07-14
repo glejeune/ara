@@ -51,6 +51,24 @@ Because of akka[http://akka.io/] and my two parakeets ;)
     sleep 1
   end
 
+Create remote actor :
+
+  # Server
+  require 'ara'
+  
+  class SimpleMessage < Actor
+    def receive(message)
+      reply "@ #{Time.now} : Hello #{message}"
+    end
+  end
+
+  Ara::Remote.server("localhost", 9292).register("simple_actor", Actors.actor_of(SimpleMessage)).start
+
+  # Client
+  require 'ara'
+  
+  actor = Actors.actor_for("simple_actor", "localhost", 9292)
+  puts actor << "World"
 
 == Changelog
 
