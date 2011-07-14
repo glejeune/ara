@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
     "examples/async_meth.rb",
     "examples/logger_actor.rb",
     "examples/simple_actor.rb",
+    "examples/simple_scheduler.rb",
     "examples/sync_actor.rb",
     "examples/test_actor.rb",
     "lib/ara.rb",
