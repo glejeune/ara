@@ -51,7 +51,9 @@ Because of akka[http://akka.io/] and my two parakeets ;)
     sleep 1
   end
 
-Create remote actor :
+=== Create remote actor
+
+Server :
 
   # Server
   require 'ara'
@@ -64,11 +66,36 @@ Create remote actor :
 
   Ara::Remote.server("localhost", 9292).register("simple_actor", Actors.actor_of(SimpleMessage)).start
 
+Client :
+
   # Client
   require 'ara'
   
   actor = Actors.actor_for("simple_actor", "localhost", 9292)
   puts actor << "World"
+
+=== Use scheduler
+
+  require 'ara'
+  
+  class MySimpleActor < SimpleActor
+    def receive( message )
+      puts "Actor #{self} receive message : #{message}"
+    end
+  end
+  
+  my_actor = Actors.actor_of(MySimpleActor).start
+  
+  my_scheduler = Scheduler.schedule(my_actor, "Hello World! (every 1 second)", 1, 1, Scheduler::SECOND)
+  
+  sleep 10
+  
+  my_scheduler.shutdown
+  puts "-- Scheduler has been shutdown! We wait 5 second to be sure ;)"
+  
+  sleep 5
+  
+  my_actor.stop
 
 == Changelog
 
