@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Gregoire Lejeune}]
-  s.date = %q{2011-06-18}
+  s.authors = ["Gregoire Lejeune"]
+  s.date = %q{2011-07-14}
   s.description = %q{Ara is a tiny class that’s allow you to use actors in Ruby}
   s.email = %q{gregoire.lejeune@free.fr}
   s.extra_rdoc_files = [
@@ -25,19 +25,32 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "ara.gemspec",
+    "examples/actor.erl",
+    "examples/actor.rb",
+    "examples/actor.scala",
     "examples/async_actor.rb",
+    "examples/async_block.rb",
+    "examples/async_meth.rb",
+    "examples/logger_actor.rb",
     "examples/simple_actor.rb",
     "examples/sync_actor.rb",
+    "examples/test_actor.rb",
     "lib/ara.rb",
-    "lib/binding_of_caller.rb",
+    "lib/ara/actor.rb",
+    "lib/ara/actors.rb",
+    "lib/ara/exception.rb",
+    "lib/ara/logger.rb",
+    "lib/ara/scheduler.rb",
+    "lib/ara/simple_actor.rb",
+    "lib/ext/binding_of_caller.rb",
     "test/helper.rb",
     "test/test_ara.rb"
   ]
   s.homepage = %q{http://algorithmique.net}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.9.2")
-  s.rubygems_version = %q{1.8.5}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{A tiny Actor class}
 
   if s.respond_to? :specification_version then

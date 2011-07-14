@@ -1,3 +1,6 @@
+require 'logger'
+require 'singleton'
+
 module Ara
    def self.logger
       return L.instance.logger

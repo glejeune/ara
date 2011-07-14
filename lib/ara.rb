@@ -1,6 +1,4 @@
 require 'thread'
-require 'logger'
-require 'singleton'
 
 require 'ara/exception'
 require 'ara/logger'

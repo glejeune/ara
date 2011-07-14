@@ -40,12 +40,16 @@ class Actor < SimpleActor
          self_of_caller = eval("self", bind)
          Thread.new do
             _result = @main.pop
+            begin
             if block_given?
               yield _result
             elsif response_method != nil
               self_of_caller.send( response_method.to_sym, _result )
             else
               self_of_caller.send( :actor_response, _result )
+            end
+            rescue => e
+               raise ActorResponseError, "Error while sending response : #{e}"
             end
          end
       end
