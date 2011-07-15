@@ -13,6 +13,7 @@ class SimpleActor
   #   myActor = Actors.actor_of(MyActor)
   #   myActor.start
   def start
+    self.send(:pre_start) if self.respond_to?(:pre_start, true)
     @thread = Thread.new do 
       loop do
         receive(@actorQueue.pop)
@@ -29,6 +30,7 @@ class SimpleActor
   #   myActor.stop
   def stop
     @thread.kill
+    self.send(:post_stop) if self.respond_to?(:post_stop, true)
   end
 
   # Send a simple message without expecting any response

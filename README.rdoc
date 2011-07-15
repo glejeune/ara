@@ -26,6 +26,15 @@ Because of akka[http://akka.io/] and my two parakeets ;)
       sleep rand(10)
       reply "Thanks @ #{Time.now}!"
     end
+
+    private
+    def pre_start
+      # ...
+    end
+
+    def post_stop
+      # ...
+    end
   end
   
   # This method will receive the actor' replies after sending it an asynchronous message

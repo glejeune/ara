@@ -5,6 +5,16 @@ class MySimpleActor < SimpleActor
   def receive( message )
     puts "Actor #{self} receive message : #{message}"
   end
+
+  private
+  def pre_start
+     puts "*** in pre_start"
+  end
+
+  private
+  def post_stop
+     puts "*** in post_stop"
+  end
 end
 
 mySimpleActor = Actors.actor_of(MySimpleActor).start
