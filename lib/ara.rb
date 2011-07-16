@@ -8,3 +8,4 @@ require 'ara/actors'
 require 'ara/scheduler'
 
 require 'ara/remote'
+require 'ara/routing'

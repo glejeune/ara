@@ -1,4 +1,5 @@
-require 'ara/exception'
+require 'ext/boc'
+#require 'ext/binding_of_caller'
 require 'ara/simple_actor'
 
 # Actor class
@@ -7,6 +8,7 @@ class Actor < SimpleActor
     raise ActorInitializationError, "You can't initialize Actor directly, use Actors.actor_of" if self.class == ::Actor
     super
     @main = Queue.new
+    @mutex = Mutex.new
   end
 
   # Send a synchronous message
@@ -19,7 +21,7 @@ class Actor < SimpleActor
   def <<(message)
     if @thread.alive?
       @actorQueue << message
-      @main.pop
+      @main.shift
     else 
       raise DeadActor, "Actor is dead!"
     end
@@ -34,28 +36,33 @@ class Actor < SimpleActor
   #
   # The code after this call will be executed without waiting the actor. You must add a <tt>result</tt> method to get the actor' reponse.
   def <(message, response_method = nil)
-    if @thread.alive?
-      @actorQueue << message
-      BindingOfCaller.binding_of_caller do |bind|
-         self_of_caller = eval("self", bind)
-         Thread.new do
-            _result = @main.pop
-            begin
-            if block_given?
-              yield _result
-            elsif response_method != nil
-              self_of_caller.send( response_method.to_sym, _result )
-            else
-              self_of_caller.send( :actor_response, _result )
-            end
-            rescue => e
-               raise ActorResponseError, "Error while sending response : #{e}"
-            end
-         end
-      end
-    else
-      raise DeadActor, "Actor is dead!"
-    end
+     _actor = self
+     if @thread.alive?
+        @actorQueue << message
+
+        BindingOfCaller.binding_of_caller do |bind|
+           self_of_caller = eval("self", bind)
+           Thread.new do
+              _result = @main.shift
+              begin
+                 if block_given?
+                    yield _result
+                 elsif response_method != nil
+                    self_of_caller.send( response_method.to_sym, _result )
+                 elsif self_of_caller.respond_to? :actor_response_with_name
+                    self_of_caller.send( :actor_response_with_name, _actor, _result ) 
+                 else
+                    self_of_caller.send( :actor_response, _result )
+                 end
+              rescue => e
+                 Ara.fatal(e)
+                 raise ActorResponseError, "Error while sending response : #{e}"
+              end
+           end
+        end
+     else
+        raise DeadActor, "Actor is dead!"
+     end
   end
   alias :async_message :<
 

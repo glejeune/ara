@@ -1,4 +1,3 @@
-require 'ext/binding_of_caller'
 require 'ara/exception'
 
 # This class allow you to create simple actors. 
@@ -16,7 +15,7 @@ class SimpleActor
     self.send(:pre_start) if self.respond_to?(:pre_start, true)
     @thread = Thread.new do 
       loop do
-        receive(@actorQueue.pop)
+        receive(@actorQueue.shift)
       end
     end
 

@@ -3,7 +3,7 @@ require 'ara'
 
 class MySynchronizedActor < Actor
   def receive(message)
-    puts "Actor #{self} receive message : #{message}"
+    puts "Actor #{self} receive message : #{message} and take a break..."
     sleep rand(10)
     reply "Thanks @ #{Time.now}!"
   end

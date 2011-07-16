@@ -33,10 +33,10 @@ module BindingOfCaller
       tracer = lambda do |event, file, line, id, binding, classname|
          event_count += 1
          if event_count == 4
-            Thread.current.set_trace_func(nil)
             case event
             when "return", "line", "end"
-               cont.call(nil, binding)
+               yield binding
+               set_trace_func(nil)
             else
                error_msg = "\n" <<
                "Invalid use of binding_of_caller. One of the following:\n" <<
@@ -46,17 +46,14 @@ module BindingOfCaller
                "  (3) the method using binding_of_caller is called from the\n" << 
                "      last line of a block or global scope.\n" <<
                "See the documentation for binding_of_caller.\n"
-               Ara.fatal(error_msg)
-               cont.call(nil, nil, lambda { raise(ScriptError, error_msg) })
+               cont.call(nil, lambda { raise(ScriptError, error_msg) })
             end
          end
       end
 
-      cont, result, error = callcc { |cc| cc }
+      cont, error = callcc { |cc| cc }
       if cont
-         Thread.current.set_trace_func(tracer)
-      elsif result
-         yield result
+         set_trace_func(tracer)
       else
          error.call 
       end
