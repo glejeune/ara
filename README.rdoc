@@ -111,6 +111,8 @@ Client :
 === 0.0.3
 * Add pre_start and post_stop
 * Change logger
+* BindingOfCaller correction
+* Add Routing
 
 === 0.0.2
 * Add Scheduler support
